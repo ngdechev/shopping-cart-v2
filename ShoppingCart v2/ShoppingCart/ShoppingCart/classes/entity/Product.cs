@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShop.commands
 {
+    [Serializable]
     class Product
     {
         public int Id { get; set; }

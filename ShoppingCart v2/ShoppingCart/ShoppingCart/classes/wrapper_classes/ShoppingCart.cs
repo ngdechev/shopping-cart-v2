@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace OnlineShop.commands
 {
@@ -63,11 +64,11 @@ namespace OnlineShop.commands
                 }
             }
         }
-        public void Checkout()
+        public void Checkout(ProductList productList)
         {
-            // TODO: add logic..
-            cartItems.Clear();
-        }
+            decimal totalPrice = 0;
+
+        }       
     }
 
 }

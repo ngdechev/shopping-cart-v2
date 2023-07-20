@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace OnlineShop.commands
@@ -21,7 +25,7 @@ namespace OnlineShop.commands
             products.Add(product);
         }
 
-        public bool RemoveProduct(int productId)
+        public bool RemoveProduct(int productId)    
         {
             Product product = products.Find(p => p.Id == productId);
             if (product != null)
@@ -34,15 +38,7 @@ namespace OnlineShop.commands
 
         public bool EditProduct(int productId, string name, string description, int quantity, decimal price)
         {
-            Product product = products.Find(p => p.Id == productId);
-            if (product != null)
-            {
-                product.Name = name;
-                product.Description = description;
-                product.Quantity = quantity;
-                product.Price = price;
-                return true;
-            }
+            // TODO: 
             return false;
         }
 
@@ -77,23 +73,25 @@ namespace OnlineShop.commands
             return maxProductId + 1;
         }
 
-        public void LoadFromFile(string filePath)
+        public List<Product> LoadFromFile(string filePath)
         {
-            if (File.Exists(filePath))
-            {
-                // TODO: add logic...
-                Console.WriteLine("Product list loaded from file.");
-            }
-            else
-            {
-                Console.WriteLine("Product list file not found. Starting with an empty list.");
-            }
+            // Read the JSON data from the file
+            string json = File.ReadAllText(filePath);
+
+            // Deserialize the JSON data to a list of products
+            List<Product> products = JsonSerializer.Deserialize<List<Product>>(json);
+
+            return products;
         }
 
         public void SaveToFile(string filePath)
         {
-            // TODO: add logic...
-            Console.WriteLine("Product list saved to file.");
+            // Serialize the list of products to JSON format
+            string json = JsonSerializer.Serialize(products);
+
+            // Write the JSON data to the file
+            File.WriteAllText(filePath, json);
+
         }
 
         public Product GetProductById(int productId)

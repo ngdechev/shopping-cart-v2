@@ -47,7 +47,7 @@ namespace OnlineShop.commands
 
         public void Help()
         {
-            Console.WriteLine("help [command]");
+            Console.WriteLine("help {command}");
             Console.WriteLine("\tDisplays the list of available commands or provides help for a specific command.");
         }
     }
