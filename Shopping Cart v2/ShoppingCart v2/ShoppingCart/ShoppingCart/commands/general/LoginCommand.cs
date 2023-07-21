@@ -24,8 +24,8 @@ namespace OnlineShop.commands
 
         public void Help()
         {
-            Console.WriteLine("login");
-            Console.WriteLine("\tLogs in the user with the specified role.");
+            Console.WriteLine("Usage: login");
+            Console.WriteLine("Description: Logs in the user with the specified role.");
         }
     }
 

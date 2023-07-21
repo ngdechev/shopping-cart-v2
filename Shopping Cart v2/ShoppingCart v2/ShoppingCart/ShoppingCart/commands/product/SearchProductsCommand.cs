@@ -17,14 +17,15 @@ namespace OnlineShop.commands
             }
             else
             {
-                Console.WriteLine("Invalid command format for searching products.");
+                Console.WriteLine("Invalid command format for searching products.\n");
+                Help();
             }
         }
 
         public void Help()
         {
-            Console.WriteLine("searchProducts | {searchTerm}");
-            Console.WriteLine("\tSearches for products matching the specified searchTerm in their name or description.");
+            Console.WriteLine("Usage: searchProducts | {searchTerm}");
+            Console.WriteLine("Description: Searches for products matching the specified searchTerm in their name or description.");
         }
     }
 }

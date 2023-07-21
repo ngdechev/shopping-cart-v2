@@ -26,14 +26,15 @@ namespace OnlineShop.commands
             }
             else
             {
-                Console.WriteLine("Invalid command format for updating a cart item.");
+                Console.WriteLine("Invalid command format for updating a cart item.\n");
+                Help();
             }
         }
 
         public void Help()
         {
-            Console.WriteLine("updateCartItem | {cartItemId} | {newQuantity}");
-            Console.WriteLine("\tUpdates the quantity of the cart item with the specified cartItemId to the newQuantity.");
+            Console.WriteLine("Usage: updateCartItem | {cartItemId} | {newQuantity}");
+            Console.WriteLine("Description: Updates the quantity of the cart item with the specified cartItemId to the newQuantity.");
         }
     }
 

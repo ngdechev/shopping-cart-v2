@@ -9,7 +9,6 @@ namespace OnlineShop.commands
     public enum UserRole
     {
         Administrator,
-        Customer,
-        RestrictedUser
+        Customer
     }
 }

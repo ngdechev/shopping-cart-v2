@@ -3,12 +3,16 @@ using OnlineShop.commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace OnlineShop.classes.helpers
 {
     static class Helpers
     {
-        public static UserRole GetUserRole()
+        public static string filePath = "product_list.json";
+        private static UserRole userRole;
+
+        public static UserRole MainScreen()
         {
             Console.WriteLine("Welcome to the Shopping Cart App!");
             Console.WriteLine("Available Commands:");
@@ -20,7 +24,7 @@ namespace OnlineShop.classes.helpers
             {
                 string userInput = Console.ReadLine().ToLower();
                 if (userInput == "login")
-                {
+                {   
                     // Ask the user to select a user role
                     Console.WriteLine("Please select a user role:");
                     Console.WriteLine("1. Administrator");
@@ -31,7 +35,7 @@ namespace OnlineShop.classes.helpers
                         string roleChoice = Console.ReadLine();
                         if (int.TryParse(roleChoice, out int roleNumber) && Enum.IsDefined(typeof(UserRole), roleNumber - 1))
                         {
-                            return (UserRole)(roleNumber - 1);
+                            userRole = (UserRole)(roleNumber - 1);
                         }
                         Console.WriteLine("Invalid input. Please enter the number corresponding to the desired role.");
                     }
@@ -52,6 +56,11 @@ namespace OnlineShop.classes.helpers
                     Console.WriteLine("Invalid command. Type 'help' for available commands.");
                 }
             }
+        }
+
+        public static UserRole GetUserRole()
+        {
+            return userRole;
         }
 
         public static Dictionary<string, ICommand> InitializeCommands(ProductList productList, ShoppingCart shoppingCart, UserRole userRole)
@@ -105,7 +114,7 @@ namespace OnlineShop.classes.helpers
 
             while (!exit)
             {
-                Console.WriteLine("Enter a command (type 'help' for available commands):");
+                Console.WriteLine("\nEnter a command (type 'help' for available commands):");
                 string command = Console.ReadLine();
 
                 string[] commandParts = command.Split('|').Select(part => part.Trim()).ToArray();
@@ -124,7 +133,7 @@ namespace OnlineShop.classes.helpers
                 }
                 else
                 {
-                    Console.WriteLine("Invalid command. Type 'help' for available commands.");
+                    Console.WriteLine("\nInvalid command. Type 'help' for available commands.");
                 }
             }
         }

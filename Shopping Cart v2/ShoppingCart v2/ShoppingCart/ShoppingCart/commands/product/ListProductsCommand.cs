@@ -15,8 +15,8 @@ namespace OnlineShop.commands
 
         public void Help()
         {
-            Console.WriteLine("listProducts");
-            Console.WriteLine("\tDisplays the list of available products.");
+            Console.WriteLine("Usage: listProducts");
+            Console.WriteLine("Description: Displays the list of available products.");
         }
     }
 }

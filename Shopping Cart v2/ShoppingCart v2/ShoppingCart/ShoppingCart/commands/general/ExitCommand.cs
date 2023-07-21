@@ -17,8 +17,8 @@ namespace OnlineShop.commands
 
         public void Help()
         {
-            Console.WriteLine("exit");
-            Console.WriteLine("\tExits the application.");
+            Console.WriteLine("Usage: exit");
+            Console.WriteLine("Description: Exits the application.");
         }
     }
 }

@@ -30,14 +30,15 @@ namespace OnlineShop.commands
             }
             else
             {
-                Console.WriteLine("Invalid command format for adding a cart item.");
+                Console.WriteLine("Invalid command format for adding a cart item.\n");
+                Help();
             }
         }
 
         public void Help()
         {
-            Console.WriteLine("addCartItem | {productId} | {quantity}");
-            Console.WriteLine("\tAdds the specified quantity of the product with the given productId to the shopping cart.");
+            Console.WriteLine("Usage: addCartItem | {productId} | {quantity}");
+            Console.WriteLine("Description: Adds the specified quantity of the product with the given productId to the shopping cart.");
         }
     }
 }

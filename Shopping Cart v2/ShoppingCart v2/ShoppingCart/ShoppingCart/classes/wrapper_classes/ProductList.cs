@@ -44,9 +44,15 @@ namespace OnlineShop.commands
 
         public void DisplayProductList()
         {
-            foreach (Product product in products)
+            if(products.Count() != 0) 
+            { 
+                foreach (Product product in products)
+                {
+                    Console.WriteLine($"Id: {product.Id}, Name: {product.Name}, Description: {product.Description}, Quantity: {product.Quantity}, Price: {product.Price}");
+                }   
+            } else
             {
-                Console.WriteLine($"Id: {product.Id}\n, Name: {product.Name}\n, Description: {product.Description}\n, Quantity: {product.Quantity}\n, Price: {product.Price}\n");
+                Console.WriteLine("There is no products in the product list.");
             }
         }
 
@@ -75,10 +81,8 @@ namespace OnlineShop.commands
 
         public List<Product> LoadFromFile(string filePath)
         {
-            // Read the JSON data from the file
             string json = File.ReadAllText(filePath);
 
-            // Deserialize the JSON data to a list of products
             List<Product> products = JsonSerializer.Deserialize<List<Product>>(json);
 
             return products;

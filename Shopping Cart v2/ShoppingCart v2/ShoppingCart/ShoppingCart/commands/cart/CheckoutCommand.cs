@@ -16,8 +16,8 @@ namespace OnlineShop.commands
 
         public void Help()
         {
-            Console.WriteLine("checkout");
-            Console.WriteLine("\tCompletes the purchase process and checks out the items in the shopping cart.");
+            Console.WriteLine("Usage: checkout");
+            Console.WriteLine("Description: Completes the purchase process and checks out the items in the shopping cart.");
         }
     }
 }

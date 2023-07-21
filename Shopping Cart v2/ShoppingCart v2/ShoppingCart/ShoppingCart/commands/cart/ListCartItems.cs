@@ -15,8 +15,8 @@ namespace OnlineShop.commands.cart
 
         public void Help()
         {
-            Console.WriteLine("listCartItems");
-            Console.WriteLine("\tDisplays the items in the shopping cart.");
+            Console.WriteLine("Usage: listCartItems");
+            Console.WriteLine("Description: Displays the items in the shopping cart.");
         }
     }
 

@@ -25,14 +25,15 @@ namespace OnlineShop.commands
             }
             else
             {
-                Console.WriteLine("Invalid command format for removing a product.");
+                Console.WriteLine("Invalid command format for removing a product.\n");
+                Help();
             }
         }
 
         public void Help()
         {
-            Console.WriteLine("removeProduct | {productId}");
-            Console.WriteLine("\tRemoves the product with the specified productId from the list.");
+            Console.WriteLine("Usage: removeProduct | {productId}");
+            Console.WriteLine("Description: Removes the product with the specified productId from the list.");
         }
     }
 

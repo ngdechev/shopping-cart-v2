@@ -35,8 +35,8 @@ namespace OnlineShop.commands
 
         public void Help()
         {
-            Console.WriteLine("editProduct {productId} | {name} | {description} | {quantity} | {price}");
-            Console.WriteLine("\tEdits the product with the specified productId and updates its name, description, quantity, and price.");
+            Console.WriteLine("Usage: editProduct | {productId} | {name} | {description} | {quantity} | {price}");
+            Console.WriteLine("Description: Edits the product with the specified productId and updates its name, description, quantity, and price.");
         }
     }
 }
