@@ -96,6 +96,7 @@ namespace OnlineShop.classes.helpers
             commands.Add("addCartItem", new AddCartItemCommand());
             commands.Add("removeCartItem", new RemoveCartItemCommand());
             commands.Add("updateCartItem", new UpdateCartItemCommand());
+            commands.Add("checkout", new CheckoutCommand());
         }
 
         private static void AddCustomerCommands(Dictionary<string, ICommand> commands)
@@ -152,7 +153,7 @@ namespace OnlineShop.classes.helpers
                     "removeCartItem" => true,
                     "updateCartItem" => true,
                     "help" => true,
-                    "listcartitems" => true,
+                    "listCartItems" => true,
                     "checkout" => true,
                     "exit" => true,
                     "login" => true,

@@ -64,11 +64,23 @@ namespace OnlineShop.commands
                 }
             }
         }
+
+        public IEnumerable<CartItem> GetCartItems()
+        {
+            return cartItems;
+        }
+
         public void Checkout(ProductList productList)
         {
             decimal totalPrice = 0;
 
-        }       
+        }
+
+        public bool IsEmpty()
+        {
+            return cartItems.Count == 0;
+        }
+
     }
 
 }
