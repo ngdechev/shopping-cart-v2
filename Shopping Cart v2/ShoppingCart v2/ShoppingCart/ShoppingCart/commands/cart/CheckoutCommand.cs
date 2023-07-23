@@ -10,31 +10,32 @@ namespace OnlineShop.commands
     {
         public void Execute(string[] commandParts, ProductList productList, ShoppingCart shoppingCart)
         {
-            if (commandParts.Length != 1)
+                if (commandParts.Length == 1)
+                {
+                if (shoppingCart.IsEmpty())
+                {
+                    Console.WriteLine("Shopping cart is empty. Add items before checking out.");
+                    return;
+                }
+
+                decimal totalPrice = CalculateTotalPrice(shoppingCart, productList);
+                Console.WriteLine($"Total Price: {totalPrice}");
+
+                if (ConfirmCheckout())
+                {
+                    PerformCheckout(shoppingCart, productList);
+                    Console.WriteLine("Checkout successful. Your order has been placed.");
+                }
+                else
+                {
+                    Console.WriteLine("Checkout canceled. Your cart items are preserved.");
+                }
+            } else
             {
                 Console.WriteLine("Invalid command format for checkout.");
                 Help();
-                return;
             }
 
-            if (shoppingCart.IsEmpty())
-            {
-                Console.WriteLine("Shopping cart is empty. Add items before checking out.");
-                return;
-            }
-
-            decimal totalPrice = CalculateTotalPrice(shoppingCart, productList);
-            Console.WriteLine($"Total Price: {totalPrice}");
-
-            if (ConfirmCheckout())
-            {
-                PerformCheckout(shoppingCart, productList);
-                Console.WriteLine("Checkout successful. Your order has been placed.");
-            }
-            else
-            {
-                Console.WriteLine("Checkout canceled. Your cart items are preserved.");
-            }
         }
 
         private decimal CalculateTotalPrice(ShoppingCart shoppingCart, ProductList productList)
