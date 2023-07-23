@@ -10,32 +10,83 @@ namespace OnlineShop.commands
     {
         public void Execute(string[] commandParts, ProductList productList, ShoppingCart shoppingCart)
         {
-            if (commandParts.Length == 6)
+            if (commandParts.Length == 4)
             {
-                int productId = int.Parse(commandParts[1].Trim());
-                string name = commandParts[2].Trim();
-                string description = commandParts[3].Trim();
-                int quantity = int.Parse(commandParts[4].Trim());
-                decimal price = decimal.Parse(commandParts[5].Trim());
+                if (!int.TryParse(commandParts[1].Trim(), out int productId))
+                {
+                    Console.WriteLine("Invalid product ID. Please enter a valid number.");
+                    return;
+                }
 
-                if (productList.EditProduct(productId, name, description, quantity, price))
+                Product productToEdit = productList.GetProductById(productId);
+                if (productToEdit == null)
                 {
-                    Console.WriteLine("Product edited successfully!");
+                    Console.WriteLine($"Product with ID {productId} not found.");
+                    return;
                 }
-                else
+
+                string chosenPart = commandParts[2].Trim().ToLower();
+                string newValue = commandParts[3].Trim();
+
+                string oldName = productToEdit.Name;
+                string oldDescription = productToEdit.Description;
+                int oldQuantity = productToEdit.Quantity;
+                decimal oldPrice = productToEdit.Price;
+
+                switch (chosenPart)
                 {
-                    Console.WriteLine("Product not found.");
+                    case "name":
+                        if (chosenPart == "name" && string.IsNullOrWhiteSpace(newValue))
+                        {
+                            Console.WriteLine("Invalid name. Name cannot be empty or whitespace.");
+                            return;
+                        }
+                        productToEdit.Name = newValue;
+                        break;
+                    case "description":
+                        if (chosenPart == "description" && string.IsNullOrWhiteSpace(newValue))
+                        {
+                            Console.WriteLine("Invalid description. Description cannot be empty or whitespace.");
+                            return;
+                        }
+                        productToEdit.Description = newValue;
+                        break;
+                    case "quantity":
+                        if (!int.TryParse(newValue, out int newQuantity) || newQuantity < 0)
+                        {
+                            Console.WriteLine("Invalid quantity value. Please enter a non-negative integer.");
+                            return;
+                        }
+                        productToEdit.Quantity = newQuantity;
+                        break;
+                    case "price":
+                        if (!decimal.TryParse(newValue, out decimal newPrice) || newPrice < 0)
+                        {
+                            Console.WriteLine("Invalid price value. Please enter a non-negative decimal.");
+                            return;
+                        }
+                        productToEdit.Price = newPrice;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid part chosen for edit. Available options: name, description, quantity, price");
+                        break;
                 }
+
+                Console.WriteLine("Product edited successfully.");
+                Console.WriteLine($"Old product details:\nName: {oldName}, Description: {oldDescription}, Quantity: {oldQuantity}, Price: {oldPrice}");
+                Console.WriteLine("New product details:");
+                Console.WriteLine($"Name: {productToEdit.Name}, Description: {productToEdit.Description}, Quantity: {productToEdit.Quantity}, Price: {productToEdit.Price}");
             }
             else
             {
-                Console.WriteLine("Invalid command format for editing a product.");
+                Console.WriteLine("Invalid command format for edditing a product.\n");
+                Help();
             }
         }
 
         public void Help()
         {
-            Console.WriteLine("Usage: editProduct | {productId} | {name} | {description} | {quantity} | {price}");
+            Console.WriteLine("Usage: editProduct | {productId} | {field} | {newFieldValue}");
             Console.WriteLine("Description: Edits the product with the specified productId and updates its name, description, quantity, and price.");
         }
     }
