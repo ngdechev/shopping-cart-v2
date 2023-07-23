@@ -4,14 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using OnlineShop.classes.helpers;
+
 namespace OnlineShop.commands
 {
     class ExitCommand : ICommand
     {
         public void Execute(string[] commandParts, ProductList productList, ShoppingCart shoppingCart)
         {
-            Console.WriteLine("Exiting the application...");
-            productList.SaveToFile("product_list.txt");
+            
+        }
+
+        public void SaveChangesAndExit(ProductList productList)
+        {
+            Console.WriteLine("Have a nice day!");
+            productList.SaveToFile(Helpers.filePath);
             Environment.Exit(0);
         }
 
