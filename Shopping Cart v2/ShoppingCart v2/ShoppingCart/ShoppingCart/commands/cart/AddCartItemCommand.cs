@@ -18,7 +18,6 @@ namespace OnlineShop.commands
 
                 Product product = productList.GetProductById(productId);
 
-
                 if (shoppingCart.AddCartItem(productList, productId, quantity))
                 {
                     Console.WriteLine($"Product {product.Name} added to the cart successfully!");

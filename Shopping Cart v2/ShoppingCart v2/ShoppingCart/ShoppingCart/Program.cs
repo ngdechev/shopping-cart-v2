@@ -1,5 +1,6 @@
 ﻿using OnlineShop.classes.helpers;
 using OnlineShop.commands;
+using OnlineShop.enums;
 using System;
 
 namespace OnlineShop

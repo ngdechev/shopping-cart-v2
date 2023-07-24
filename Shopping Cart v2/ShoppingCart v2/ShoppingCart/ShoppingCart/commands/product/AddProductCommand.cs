@@ -14,19 +14,19 @@ namespace OnlineShop.commands
         {
             if (commandParts.Length == 5)
             {
-            string name = commandParts[1];
-            string description = commandParts[2];
+                string name = commandParts[1];
+                string description = commandParts[2];
 
-            if (!int.TryParse(commandParts[3], out int quantity) || !decimal.TryParse(commandParts[4], out decimal price))
-            {
-                Console.WriteLine("Invalid quantity or price format. Quantity must be an integer, and price must be a decimal number.");
-                return;
+                if (!int.TryParse(commandParts[3], out int quantity) || !decimal.TryParse(commandParts[4], out decimal price))
+                {
+                    Console.WriteLine("Invalid quantity or price format. Quantity must be an integer, and price must be a decimal number.");
+                    return;
+                }
+
+                Product newProduct = new Product(name, description, quantity, price);
+                productList.AddProduct(newProduct);
+                Console.WriteLine($"Product '{name}' has been added.");                
             }
-
-            Product newProduct = new Product(name, description, quantity, price);
-            productList.AddProduct(newProduct);
-            Console.WriteLine($"Product '{name}' has been added.");                
-            } 
             else
             {
                 Console.WriteLine("Invalid command format for adding a product.\n");
