@@ -1,5 +1,6 @@
 ﻿using OnlineShop.classes.helpers;
 using OnlineShop.commands;
+using OnlineShop.commands.general;
 using OnlineShop.enums;
 using System;
 
@@ -12,8 +13,9 @@ namespace OnlineShop
             var shoppingCart = new ShoppingCart();
             var productList = new ProductList();
             ExitCommand exitCommand = new();
-            UserRole userRole = UserInputHandler.GetUserRole();
+            UserRole userRole = UserInputHandler.MainScreen();
             var commands = Helpers.InitializeCommands(productList, shoppingCart, userRole);
+            Logger.SetMessageType("error");
 
             Console.CancelKeyPress += (sender, e) =>
             {

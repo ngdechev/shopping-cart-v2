@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OnlineShop.classes.helpers;
+using OnlineShop.commands.general;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,16 +23,19 @@ namespace OnlineShop.commands
                 if (shoppingCart.AddCartItem(productList, productId, quantity))
                 {
                     Console.WriteLine($"Product {product.Name} added to the cart successfully!");
+                    Logger1.Debug(UserInputHandler.GetUserRole(), $"Product {product.Name} added to the cart successfully!");
                 }
                 else
                 {
                     Console.WriteLine("Product not found or insufficient quantity available.");
+                    Logger1.Warn(UserInputHandler.GetUserRole(), "Product not found or insufficient quantity available.");
                 }
             }
             else
             {
                 Console.WriteLine("Invalid command format for adding a cart item.\n");
                 Help();
+                Logger1.Error(UserInputHandler.GetUserRole(), "Invalid command format for adding a cart item.");
             }
         }
 

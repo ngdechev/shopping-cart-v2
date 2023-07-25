@@ -1,72 +1,85 @@
-﻿using OnlineShop.enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace OnlineShop.commands.general
 {
+    enum Type_MSG
+    {
+        error,
+        warn,
+        info,
+        debug
+    }
     static class Logger
     {
-        public static string filePath = "shopping_cart.log";
-
-        public static void GetLogLevel(LogLevel logLevel, UserRole userRole, string message)
+        private static int msgType = 0;
+        public static void SetMessageType(string messageType)
         {
-            switch(logLevel.ToString())
+            switch (messageType)
             {
-                case "Debug":
-                    Debug(userRole, message);
+                case "error":
+                    msgType = (int) Type_MSG.error;
                     break;
-                case "Info":
-                    Info(userRole, message);
+                case "warn":
+                    msgType = (int)Type_MSG.warn;
                     break;
-                case "Warn":
-                    Warn(userRole, message);
+                case "info":
+                    msgType = (int)Type_MSG.info; ;
                     break;
-                case "Error":
-                    Error(userRole, message);
+                case "debug":
+                    msgType = (int)Type_MSG.debug;
                     break;
+                default:
+                    msgType = 0;
+                    break;
+            }
+
+        }
+        public static void Log(string type_msg, string message)
+        {
+            int this_type_msg;
+
+            switch (type_msg)
+            {
+                case "error":
+                    this_type_msg = 0;
+                    break;
+                case "warn":
+                    this_type_msg = 1;
+                    break;
+                case "info":
+                    this_type_msg = 2;
+                    break;
+                case "debug":
+                    this_type_msg = 3;
+                    break;
+                default:
+                    this_type_msg = 0;
+                    break;
+            }
+            if (this_type_msg <= msgType)
+            {
+                SaveToFile(type_msg, message);
             }
         }
 
-        private static void Log(LogLevel logLevel, UserRole userRole, string message)
+        private static void SaveToFile(string type_msg, string message)
         {
-            string logType = logLevel.ToString().ToUpper();
-            string userRoleStr = userRole.ToString();
-            string logMessage = $"[{DateTime.Now}][{logType}][{userRoleStr}]{message}";
-
-            WriteToFile(logMessage);
-        }
-
-        public static void Error(UserRole userRole, string message)
-        {
-            Log(LogLevel.Error, userRole, message);
-        }
-
-        public static void Warn(UserRole userRole, string message)
-        {
-            Log(LogLevel.Warn, userRole, message);
-        }
-
-        public static void Info(UserRole userRole, string message)
-        {
-            Log(LogLevel.Info, userRole, message);
-        }
-
-        public static void Debug(UserRole userRole, string message)
-        {
-            Log(LogLevel.Debug, userRole, message);
-        }
-
-        private static void WriteToFile(string logMessage)
-        {
-            using (StreamWriter writer = new StreamWriter(filePath, true))
+            string logFilePath = "logger.log";
+            string logInformation = $"[{DateTime.Now.ToString()}][{UserInputHandler.GetUserRole()}][{type_msg.ToUpper()}] -> {message}";
+            
+            try
             {
-                writer.WriteLine(logMessage);
+                File.AppendAllText(logFilePath, logInformation);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
             }
         }
+
     }
 }

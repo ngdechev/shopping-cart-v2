@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OnlineShop.commands.general;
 
 namespace OnlineShop.commands
 {
@@ -14,6 +15,7 @@ namespace OnlineShop.commands
         {
             if (commandParts.Length == 5)
             {
+
                 string name = commandParts[1];
                 string description = commandParts[2];
 

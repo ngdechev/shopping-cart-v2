@@ -3,7 +3,9 @@ using System;
 
 public class UserInputHandler
 {
-    public static UserRole GetUserRole()
+    private static UserRole userRole;
+
+    public static UserRole MainScreen()
     {
         Console.WriteLine("Welcome to the Shopping Cart App!");
         Console.WriteLine("Available Commands:");
@@ -16,7 +18,6 @@ public class UserInputHandler
             string userInput = Console.ReadLine().ToLower();
             if (userInput == "login")
             {
-                // Ask the user to select a user role
                 Console.WriteLine("Please select a user role:");
                 Console.WriteLine("1. Administrator");
                 Console.WriteLine("2. Customer");
@@ -47,6 +48,11 @@ public class UserInputHandler
                 Console.WriteLine("Invalid command. Type 'help' for available commands.");
             }
         }
+    }
+
+    public static UserRole GetUserRole()
+    {
+        return userRole;
     }
 }
 

@@ -24,7 +24,7 @@ namespace OnlineShop.commands
                 Console.WriteLine("Available commands:");
                 foreach (var command in commands)
                 {
-                    if (Helpers.IsCommandAccessible(command.Key, Helpers.GetUserRole()))
+                    if (Helpers.IsCommandAccessible(command.Key, UserInputHandler.GetUserRole()))
                     {
                         Console.WriteLine($"Command name: {command.Key}");
                         command.Value.Help();
