@@ -14,25 +14,20 @@ namespace OnlineShop.classes.helpers
 
         public static Dictionary<string, ICommand> InitializeCommands(ProductList productList, ShoppingCart shoppingCart, UserRole userRole)
         {
-            var commands = new Dictionary<string, ICommand>
-            {
-                {"help", new HelpCommand(null)},
-                {"exit", new ExitCommand()},
-                {"login", new LoginCommand(null, userRole)}
-            };
+            var generalCommands = GeneralCommands();
 
             if (userRole == UserRole.Administrator)
             {
-                AddAdministratorCommands(commands);
+                AddAdministratorCommands(generalCommands);
             }
             else if (userRole == UserRole.Customer)
             {
-                AddCustomerCommands(commands);
+                AddCustomerCommands(generalCommands);
             }
 
-            commands["help"] = new HelpCommand(commands);
+            generalCommands["help"] = new HelpCommand(generalCommands);
 
-            return commands;
+            return generalCommands;
         }
 
         private static void AddAdministratorCommands(Dictionary<string, ICommand> commands)
@@ -45,17 +40,29 @@ namespace OnlineShop.classes.helpers
             commands.Add("addCartItem", new AddCartItemCommand());
             commands.Add("removeCartItem", new RemoveCartItemCommand());
             commands.Add("updateCartItem", new UpdateCartItemCommand());
+            commands.Add("listCartItems", new ListCartItemsCommand());
             commands.Add("checkout", new CheckoutCommand());
         }
 
         private static void AddCustomerCommands(Dictionary<string, ICommand> commands)
         {
-            commands.Add("listCartItems", new ListCartItems());
-            commands.Add("checkout", new CheckoutCommand());
-            commands.Add("searchProducts", new SearchProductsCommand());
             commands.Add("addCartItem", new AddCartItemCommand());
             commands.Add("removeCartItem", new RemoveCartItemCommand());
             commands.Add("updateCartItem", new UpdateCartItemCommand());
+            commands.Add("searchProducts", new SearchProductsCommand());
+            commands.Add("listCartItem", new ListCartItemsCommand());
+            commands.Add("checkout", new CheckoutCommand());
+        }
+
+        private static Dictionary<string, ICommand> GeneralCommands() {
+            var commands = new Dictionary<string, ICommand>
+            {
+                {"help", new HelpCommand(null)},
+                {"exit", new ExitCommand()},
+                {"login", new LoginCommand(null, UserInputHandler.GetUserRole())}
+            };
+
+            return commands;
         }
 
         public static void RunCommandLoop(Dictionary<string, ICommand> commands, ProductList productList, ShoppingCart shoppingCart, UserRole userRole)
@@ -101,11 +108,9 @@ namespace OnlineShop.classes.helpers
                     "addCartItem" => true,
                     "removeCartItem" => true,
                     "updateCartItem" => true,
-                    "help" => true,
-                    "listCartItems" => true,
+                    "searchProducts" => true,
+                    "listCartItem" => true,
                     "checkout" => true,
-                    "exit" => true,
-                    "login" => true,
                     _ => false,
                 };
             }

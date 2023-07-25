@@ -12,14 +12,14 @@ namespace OnlineShop.commands
     {
         public void Execute(string[] commandParts, ProductList productList, ShoppingCart shoppingCart)
         {
-            
+            SaveChangesAndExit(productList);
+            System.Environment.Exit(0);
         }
 
         public void SaveChangesAndExit(ProductList productList)
         {
             Console.WriteLine("Have a nice day!");
             productList.SaveToFile(Helpers.filePath);
-            Environment.Exit(0);
         }
 
         public void Help()
