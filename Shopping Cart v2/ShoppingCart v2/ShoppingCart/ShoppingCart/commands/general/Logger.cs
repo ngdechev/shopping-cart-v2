@@ -69,7 +69,7 @@ namespace OnlineShop.commands.general
         private static void SaveToFile(string type_msg, string message)
         {
             string logFilePath = "logger.log";
-            string logInformation = $"[{DateTime.Now.ToString()}][{UserInputHandler.GetUserRole()}][{type_msg.ToUpper()}] -> {message}";
+            string logInformation = $"[{DateTime.Now.ToString()}][{UserInputHandler.GetUserRole()}][{type_msg.ToUpper()}] -> {message}\n";
             
             try
             {

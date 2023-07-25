@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineShop.commands.general;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace OnlineShop.commands
     {
         public void Execute(string[] commandParts, ProductList productList, ShoppingCart shoppingCart)
         {
+            Logger.Log("info", $"Accessed: {nameof(ListProductsCommand)}");
             productList.DisplayProductList();
         }
 

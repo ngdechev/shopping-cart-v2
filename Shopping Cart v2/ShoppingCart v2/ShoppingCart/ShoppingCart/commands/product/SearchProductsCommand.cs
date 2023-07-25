@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineShop.commands.general;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,8 @@ namespace OnlineShop.commands
     {
         public void Execute(string[] commandParts, ProductList productList, ShoppingCart shoppingCart)
         {
+            Logger.Log("info", $"Accessed: {nameof(SearchProductsCommand)}");
+
             if (commandParts.Length == 2)
             {
                 string searchTerm = commandParts[1].Trim();
@@ -18,6 +21,7 @@ namespace OnlineShop.commands
             else
             {
                 Console.WriteLine("Invalid command format for searching products.\n");
+                Logger.Log("warn", "Invalid command format for searching products.");
                 Help();
             }
         }
