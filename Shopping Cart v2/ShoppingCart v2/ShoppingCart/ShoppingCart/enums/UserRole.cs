@@ -9,6 +9,7 @@ namespace OnlineShop.enums
     public enum UserRole
     {
         Administrator,
-        Customer
+        Customer,
+        WarehouseWorker
     }
 }

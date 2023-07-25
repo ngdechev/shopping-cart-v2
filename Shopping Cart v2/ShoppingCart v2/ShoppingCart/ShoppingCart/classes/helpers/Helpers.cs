@@ -24,6 +24,10 @@ namespace OnlineShop.classes.helpers
             {
                 AddCustomerCommands(generalCommands);
             }
+            else if (userRole == UserRole.WarehouseWorker)
+            {
+                AddWarehouseWorkerCommands(generalCommands);
+            }
 
             generalCommands["help"] = new HelpCommand(generalCommands);
 
@@ -54,6 +58,11 @@ namespace OnlineShop.classes.helpers
             commands.Add("checkout", new CheckoutCommand());
         }
 
+        private static void AddWarehouseWorkerCommands(Dictionary<string, ICommand> commands)
+        {
+            commands.Add("updateProductQuantity", new UpdateCartItemCommand());
+        }
+
         private static Dictionary<string, ICommand> GeneralCommands() {
             var commands = new Dictionary<string, ICommand>
             {
@@ -64,7 +73,7 @@ namespace OnlineShop.classes.helpers
 
             return commands;
         }
-
+            
         public static void RunCommandLoop(Dictionary<string, ICommand> commands, ProductList productList, ShoppingCart shoppingCart, UserRole userRole)
         {
             bool exit = false;
