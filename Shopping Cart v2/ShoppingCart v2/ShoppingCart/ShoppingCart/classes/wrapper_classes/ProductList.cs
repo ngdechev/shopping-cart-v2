@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShop.commands
 {
-    class ProductList
+    public class ProductList
     {
         private List<Product> products;
 
@@ -125,6 +125,11 @@ namespace OnlineShop.commands
                 return true;
             }
             return false;
+        }
+
+        public List<Product> GetProductList()
+        {
+            return products;
         }
     }
 }
