@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineShop.enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,63 +7,56 @@ using System.Threading.Tasks;
 
 namespace OnlineShop.commands.general
 {
-    enum Type_MSG
-    {
-        error,
-        warn,
-        info,
-        debug
-    }
     static class Logger
     {
-        private static int msgType = 0;
+        private static int logMsgType = 0;
         public static void SetMessageType(string messageType)
         {
             switch (messageType)
             {
                 case "error":
-                    msgType = (int) Type_MSG.error;
+                    logMsgType = (int) LogLevel.error;
                     break;
                 case "warn":
-                    msgType = (int)Type_MSG.warn;
+                    logMsgType = (int)LogLevel.warn;
                     break;
                 case "info":
-                    msgType = (int)Type_MSG.info; ;
+                    logMsgType = (int)LogLevel.info; ;
                     break;
                 case "debug":
-                    msgType = (int)Type_MSG.debug;
+                    logMsgType = (int)LogLevel.debug;
+                    break;
+                default:
+                    logMsgType = 0;
+                    break;
+            }
+
+        }
+        public static void Log(string messageType, string message)
+        {
+            int msgType;
+
+            switch (messageType)
+            {
+                case "error":
+                    msgType = 0;
+                    break;
+                case "warn":
+                    msgType = 1;
+                    break;
+                case "info":
+                    msgType = 2;
+                    break;
+                case "debug":
+                    msgType = 3;
                     break;
                 default:
                     msgType = 0;
                     break;
             }
-
-        }
-        public static void Log(string type_msg, string message)
-        {
-            int this_type_msg;
-
-            switch (type_msg)
+            if (msgType <= logMsgType)  
             {
-                case "error":
-                    this_type_msg = 0;
-                    break;
-                case "warn":
-                    this_type_msg = 1;
-                    break;
-                case "info":
-                    this_type_msg = 2;
-                    break;
-                case "debug":
-                    this_type_msg = 3;
-                    break;
-                default:
-                    this_type_msg = 0;
-                    break;
-            }
-            if (this_type_msg <= msgType)
-            {
-                SaveToFile(type_msg, message);
+                SaveToFile(messageType, message);
             }
         }
 
