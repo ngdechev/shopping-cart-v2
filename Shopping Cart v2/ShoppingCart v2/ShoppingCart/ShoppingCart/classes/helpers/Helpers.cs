@@ -122,6 +122,14 @@ namespace OnlineShop.classes.helpers
                     "checkout" => true,
                     _ => false,
                 };
+            } 
+            else if(userRole == UserRole.WarehouseWorker)
+            {
+                return commandName switch
+                {
+                    "updateProductQuantity" => true,
+                    _ => false,
+                };
             }
             else
             {
