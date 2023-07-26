@@ -60,7 +60,7 @@ namespace OnlineShop.classes.helpers
 
         private static void AddWarehouseWorkerCommands(Dictionary<string, ICommand> commands)
         {
-            commands.Add("updateProductQuantity", new UpdateCartItemCommand());
+            commands.Add("updateProductQuantity", new UpdateProductQuantityCommand());
         }
 
         private static Dictionary<string, ICommand> GeneralCommands() {

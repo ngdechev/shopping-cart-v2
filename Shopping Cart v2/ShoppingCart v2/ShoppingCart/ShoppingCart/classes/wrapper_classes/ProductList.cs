@@ -115,5 +115,16 @@ namespace OnlineShop.commands
 
             return foundedProduct;
         }
+
+        public bool UpdateProductQuantity(ProductList productList, int productId, int newQuantity)
+        {
+            Product product = productList.GetProductById(productId);
+            if (productId != null)
+            {
+                product.Quantity = newQuantity;
+                return true;
+            }
+            return false;
+        }
     }
 }
