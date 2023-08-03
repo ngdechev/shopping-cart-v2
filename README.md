@@ -1,3 +1,7 @@
+![version](https://img.shields.io/badge/version-1.0.0-blue)
+![GitHub repo size](https://img.shields.io/github/repo-size/ngdechev/smartbot?color=green)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/ngdechev/library)
+
 # Shopping Cart
 ## Description
 Implement a simple text-based application that emulates a shopping cart.
@@ -30,8 +34,17 @@ Implement a simple text-based application that emulates a shopping cart.
 - Description
 - Price
 - Available Quantity
-
 **Cart item fields**
 - Id
 - Product Id
 - Quantity
+
+## Project Development
+The following programming languages were used for the development of the project:
+1. C#
+
+And the following tools:
+1. Visual Studio
+
+![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white) ![Visual Studio](https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=visual-studio&logoColor=white)
+
